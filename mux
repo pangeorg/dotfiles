@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+sn='Work'
+tmux="/usr/local/bin/tmux -2 "
+$tmux new-session -d -s $sn
+$tmux send-keys 'cd ~/python/hotpy/' enter
+$tmux rename-window -t $sn Python
+$tmux send-keys 'lnx' enter
+$tmux send-keys 'qjobs' enter
+$tmux new-window -t $sn 
+$tmux rename-window -t $sn documentation
+$tmux send-keys 'lnx' enter
+$tmux send-keys 'cd ~/Documents/Labbook/16/' enter
+$tmux select-window -t 1
+$tmux attach -t $sn 
