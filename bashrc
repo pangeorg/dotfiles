@@ -25,7 +25,7 @@ source /afs/mpa/project/vertex/software/use.sh
 module load python # _vtk/2.7.11
 export PYTHONPATH=$HOME/python:$HOME/.local/lib/python2.7/site-packages/:$PYTHONPATH
 # or 3 ?
-# module load python3/3.5.1 # _vtk/2.7.11
+module load python3/3.5.1 # _vtk/2.7.11
 # export PYTHONPATH=$HOME/python:$HOME/.local/lib/python3.5/site-packages/:$PYTHONPATH
 export PYTHONWARNINGS="ignore"
 

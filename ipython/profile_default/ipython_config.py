@@ -179,7 +179,7 @@ c.TerminalInteractiveShell.color_info = True
 # c.TerminalInteractiveShell.show_rewritten_input = True
 
 # Set the color scheme (NoColor, Linux, or LightBG).
-c.TerminalInteractiveShell.colors =  'LightBG' # 'Linux'
+c.TerminalInteractiveShell.colors =  'neutral'
 
 # Autoindent IPython code entered interactively.
 # c.TerminalInteractiveShell.autoindent = True
@@ -328,7 +328,7 @@ c.PromptManager.justify = False
 c.PromptManager.in_template = '\W [\\#]: ' # 'In [\\#]: '
 
 #
-# c.PromptManager.color_scheme = 'LightBG'
+c.PromptManager.color_scheme = 'neutral'
 
 #------------------------------------------------------------------------------
 # HistoryManager configuration
@@ -358,7 +358,7 @@ c.PromptManager.in_template = '\W [\\#]: ' # 'In [\\#]: '
 # c.HistoryManager.hist_file = u''
 def decide_history():
     import subprocess
-    out = subprocess.ceck_output(['echo','$HOSTNAME'])
+    out = subprocess.check_output(['echo','$HOSTNAME'])
     if 'lnx' in out:
         return u'/afs/mpa/home/georgsto/.ipython/profile_default/ipython_hist_lnx.sqlite'
     elif 'ncg' in out:
