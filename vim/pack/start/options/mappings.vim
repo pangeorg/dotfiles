@@ -46,7 +46,8 @@ map 0 ^
 map 9 $h
 
 " open ~/data/TODO for TODOLIST
-map <leader>td :vsplit ~/Documents/Notizen/TODO<cr>
+map <leader>td :vsplit ~/Documents/Labbook/todo.md<cr>
+map <leader>sc :vsplit ~/Documents/Labbook/notes.md<cr>
 
 " set paste
 map <leader>pp :setlocal paste!<cr>

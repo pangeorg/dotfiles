@@ -126,11 +126,53 @@ function! FortComment() range
     endfor
 endfunction
 
+function! Get_Git_Dir()
+    let git_dir = system("git rev-parse --show-toplevel")
+    let no_git_dir = matchstr(git_dir, "^fatal:.*")
+    if empty(no_git_dir)
+        return git_dir
+    else
+        return false
+    endif
+endfunction
+
+function! IsHotB()
+    cd %:p:h
+    let git_dir = system("git rev-parse --show-toplevel")
+    " let no_git_dir = matchstr(git_dir, "^fatal:.*")
+    if git_dir =~ "hotb"
+        let g:ishotb=1
+    else
+        let g:ishotb=0
+    endif
+endfunction
+
+function! BuildHotbClean()
+    let current_dir = getcwd()
+    cd ~/hotb/
+    let g:dispatch='cd ~/hotb/ && make clean && make -j8 WITH_OPENMP=1 && cd -'
+    echo "!make clean && make -j9 WITH_OPENMP=1"
+    " execute "!make clean && make -j9 WITH_OPENMP=1"
+    execute "Dispatch!"
+    execute 'cd' fnameescape(current_dir)
+endfunction
+
 function! BuildHotb()
     let current_dir = getcwd()
     cd ~/hotb/
-    echo "!make clean && make -j9 WITH_OPENMP=1"
-    execute "!make clean && make -j9 WITH_OPENMP=1"
+    echo "!make -j9 WITH_OPENMP=1"
+    let g:dispatch='cd ~/hotb/  && make -j8 WITH_OPENMP=1 && cd -'
+    " execute "!make -j9 WITH_OPENMP=1"
+    execute "Dispatch!"
+    execute 'cd' fnameescape(current_dir)
+endfunction
+
+function! HotbN()
+    let current_dir = getcwd()
+    cd ~/hotb/
+    echo "scp make.inc.hotb.n make.inc.hotb"
+    execute "scp make.inc.hotb.n make.inc.hotb"
+    call BuildHotb()
     execute 'cd' fnameescape(current_dir)
 endfunction
 

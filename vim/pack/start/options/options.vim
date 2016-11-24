@@ -40,7 +40,8 @@ set mat=2                                       " How many tenths of a second to
 set noerrorbells                                " No annoying sound on errors
 set novisualbell
 set tm=500
-set foldcolumn=1                                " Add a bit extra margin to the left
+set foldcolumn=2                                " Add a bit extra margin to the left
+set clipboard=unnamedplus                       " yank to + Register
 set encoding=utf8                               " Set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac                            " Use Unix as the standard file type
 set timeoutlen=500 ttimeoutlen=0

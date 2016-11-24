@@ -89,7 +89,14 @@ c = get_config()
 # c.TerminalIPythonApp.log_level = 30
 
 # lines of code to run at IPython startup.
-c.TerminalIPythonApp.exec_lines = ['!bash ~/.bash_aliases', '%load_ext autoreload', '%autoreload 2']
+
+_aliases = ['%alias {name} {cmd}'.format(name=name, cmd=cmd) for (name, cmd) in
+        [('l', 'ls -ltrh', ), ('vim', 'vim'),
+            ('grep', 'grep'), ('mv', 'mv -v'), ('scp', 'scp -v'),
+            ('qsub', 'qsub'), ('qjobs', 'qjobs'),]]
+_exec_lines = ['%load_ext autoreload', '%autoreload 2']
+_exec_lines.extend(_aliases)
+c.TerminalIPythonApp.exec_lines = _exec_lines
 
 # Suppress warning messages about legacy config files
 # c.TerminalIPythonApp.ignore_old_config = False
@@ -179,7 +186,7 @@ c.TerminalInteractiveShell.color_info = True
 # c.TerminalInteractiveShell.show_rewritten_input = True
 
 # Set the color scheme (NoColor, Linux, or LightBG).
-c.TerminalInteractiveShell.colors =  'neutral'
+c.TerminalInteractiveShell.colors =  'Linux' # 'neutral'
 
 # Autoindent IPython code entered interactively.
 # c.TerminalInteractiveShell.autoindent = True
@@ -359,9 +366,9 @@ c.PromptManager.color_scheme = 'neutral'
 def decide_history():
     import subprocess
     out = subprocess.check_output(['echo','$HOSTNAME'])
-    if 'lnx' in out:
+    if 'lnx' in str(out):
         return u'/afs/mpa/home/georgsto/.ipython/profile_default/ipython_hist_lnx.sqlite'
-    elif 'ncg' in out:
+    elif 'ncg' in str(out):
         return u'/afs/mpa/home/georgsto/.ipython/profile_default/ipython_hist_lnx.sqlite'
     else:
         return u'/afs/mpa/home/georgsto/.ipython/profile_default/ipython_hist_new.sqlite'
@@ -513,21 +520,3 @@ c.PlainTextFormatter.pprint = True
 # the right interpreter.
 # c.ScriptMagics.script_paths = {}
 
-#------------------------------------------------------------
-# Source ~/.bashrc
-#------------------------------------------------------------
-import re
-import os.path
-
-c = get_config()
-
-with open(os.path.expanduser('~/.bash_aliases')) as bashrc:
-    aliases = []
-    for line in bashrc:
-        if line.startswith('alias'):
-            parts = re.match(r"""^alias (\w+)=(['"]?)(.+)\2$""", line.strip())
-            if parts:
-                source, _, target = parts.groups()
-                aliases.append((source, target))
-
-    c.AliasManager.user_aliases = aliases
