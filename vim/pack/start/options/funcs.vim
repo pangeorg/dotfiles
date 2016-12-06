@@ -150,10 +150,8 @@ endfunction
 function! BuildHotbClean()
     let current_dir = getcwd()
     cd ~/hotb/
-    let g:dispatch='cd ~/hotb/ && make clean && make -j8 WITH_OPENMP=1 && cd -'
     echo "!make clean && make -j9 WITH_OPENMP=1"
-    " execute "!make clean && make -j9 WITH_OPENMP=1"
-    execute "Dispatch!"
+    execute "AsyncRun make clean && make -j9 WITH_OPENMP=1"
     execute 'cd' fnameescape(current_dir)
 endfunction
 
@@ -161,9 +159,7 @@ function! BuildHotb()
     let current_dir = getcwd()
     cd ~/hotb/
     echo "!make -j9 WITH_OPENMP=1"
-    let g:dispatch='cd ~/hotb/  && make -j8 WITH_OPENMP=1 && cd -'
-    " execute "!make -j9 WITH_OPENMP=1"
-    execute "Dispatch!"
+    execute "AsyncRun make -j9 WITH_OPENMP=1"
     execute 'cd' fnameescape(current_dir)
 endfunction
 

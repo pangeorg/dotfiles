@@ -46,7 +46,7 @@ set encoding=utf8                               " Set utf8 as standard encoding 
 set ffs=unix,dos,mac                            " Use Unix as the standard file type
 set timeoutlen=500 ttimeoutlen=0
 let g:netrw_liststyle=3                         " Set NETRW look as NERDTree
-set tags=~/.tags/tags
+" set tags=~/.tags/tags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
