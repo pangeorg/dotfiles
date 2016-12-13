@@ -317,7 +317,7 @@ axes.formatter.useoffset      : True    # If True, the tick label formatter
 #axes.unicode_minus  : True    # use unicode for the minus symbol
                                # rather than hyphen.  See
                                # http://en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes
-axes.prop_cycle    : cycler('color', ['black', 'r', 'b', 'g', 'CF4457', '188487', 'E24A33'])
+axes.prop_cycle    : cycler('color', ['black', 'r', 'b', 'g', 'c', '188487', 'E24A33'])
 # axes.prop_cycle    : cycler('color', ['black', 'r', 'b', 'g', 'c', 'm', 'y', 'k'])
                                             # color cycle for plot lines
                                             # as list of string colorspecs:

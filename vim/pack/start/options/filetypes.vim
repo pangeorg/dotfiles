@@ -19,9 +19,9 @@ autocmd FileType pro set commentstring=;\ %s
 """"""""""""""""""""""""""""""
 " => LATEX section
 """""""""""""""""""""""""""""""
-autocmd BufWritePost *.tex Dispatch! pdflatex %
-autocmd FileType tex nnoremap <F9> <ESC>:w<CR><ESC>:!pdflatex % && texclean<CR><CR>
-autocmd FileType tex inoremap <F9> <ESC>:w<CR><ESC>:!pdflatex % && texclean<CR><CR>
+" autocmd BufWritePost *.tex Dispatch! pdflatex %
+" autocmd FileType tex nnoremap <F9> <ESC>:w<CR><ESC>:!pdflatex % && texclean<CR><CR>
+" autocmd FileType tex inoremap <F9> <ESC>:w<CR><ESC>:!pdflatex % && texclean<CR><CR>
 "
 """"""""""""""""""""""""""""""
 " => MARKDOWN

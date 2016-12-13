@@ -80,10 +80,10 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """ TEX
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:vimtex_latexmk_enabled=1
-let g:vimtex_view_general_viewer='okular'
-let g:vimtex_view_general_options = '--unique @pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
+let g:LatexBox_latexmk_async=0
+let g:LatexBox_latexmk_preview_continuously=1
+let g:LatexBox_quickfix=2
+let g:LatexBox_viewer='/opt/kde4-800/bin/okular'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" ALIGN

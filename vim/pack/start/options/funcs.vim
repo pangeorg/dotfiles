@@ -152,6 +152,7 @@ function! BuildHotbClean()
     cd ~/hotb/
     echo "!make clean && make -j9 WITH_OPENMP=1"
     execute "AsyncRun make clean && make -j9 WITH_OPENMP=1"
+    execute "copen"
     execute 'cd' fnameescape(current_dir)
 endfunction
 
@@ -160,6 +161,7 @@ function! BuildHotb()
     cd ~/hotb/
     echo "!make -j9 WITH_OPENMP=1"
     execute "AsyncRun make -j9 WITH_OPENMP=1"
+    execute "copen"
     execute 'cd' fnameescape(current_dir)
 endfunction
 
@@ -168,6 +170,7 @@ function! HotbN()
     cd ~/hotb/
     echo "scp make.inc.hotb.n make.inc.hotb"
     execute "scp make.inc.hotb.n make.inc.hotb"
+    execute "copen"
     call BuildHotb()
     execute 'cd' fnameescape(current_dir)
 endfunction
