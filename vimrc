@@ -1,61 +1,31 @@
-set runtimepath=~/.dotfiles/vim/**,$VIMRUNTIME "_runtime
-" set rtp+=~/.dotfiles/Vundle.vim
-
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-" call vundle#begin('~/.dotfiles/vim_runtime/sources')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+let g:plug_url_format="http://git::@github.com/%s.git"
 
-" let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.dotfiles/vim/plugs')
+Plug 'tpope/vim-fugitive'
+Plug 'AlessandroYorba/Sierra'
+Plug 'tmhedberg/SimpylFold'
+Plug 'itchyny/lightline.vim'
+Plug 'fholgado/minibufexpl.vim'
+Plug 'majutsushi/tagbar'
+Plug 'wellle/targets.vim'
+Plug 'L9'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'junegunn/vim-easy-align'
+Plug 'xolox/vim-misc'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rsi'
+Plug 'vim-scripts/ctags.vim'
+Plug 'tpope/vim-repeat'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+call plug#end()
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'AlessandroYorba/Sierra'
-" Plugin 'tmhedberg/SimpylFold'
-" Plugin 'itchyny/lightline.vim'
-" Plugin 'fholgado/minibufexpl.vim'
-" Plugin 'majutsushi/tagbar'
-" Plugin 'wellle/targets.vim'
-" Plugin 'L9'
-" Plugin 'tpope/vim-commentary'
-" Plugin 'vim-scripts/AutoComplPop'
-" Plugin 'junegunn/vim-easy-align'
-" Plugin 'xolox/vim-misc'
-" Plugin 'tpope/vim-surround'
-" Plugin 'tpope/vim-rsi'
-" Plugin 'vim-scripts/ctags.vim'
-" Plugin 'tpope/vim-repeat'
-" Plugin 'tpope/vim-dispatch'
-" Plugin 'plasticboy/vim-markdown.git'
-" Plugin 'godlygeek/tabular.git'
-
-" All of your Plugins must be added before the following line
-" call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" source ~/.dotfiles/vim_runtime/vimrcs/plugins_config.vim
-" source ~/.dotfiles/vim_runtime/vimrcs/mappings.vim
-" source ~/.dotfiles/vim_runtime/vimrcs/funcs.vim
-" source ~/.dotfiles/vim_runtime/vimrcs/options.vim
-" source ~/.dotfiles/vim_runtime/vimrcs/filetypes.vim
-"
-
-
-
+source ~/.dotfiles/vim/plugins_config.vim
+source ~/.dotfiles/vim/mappings.vim
+source ~/.dotfiles/vim/funcs.vim
+source ~/.dotfiles/vim/options.vim
+source ~/.dotfiles/vim/filetypes.vim
