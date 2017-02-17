@@ -8,6 +8,7 @@ func! DeleteTrailingWS()
   exe "normal! `z"
 endfunc
 autocmd BufWrite *.py :silent call DeleteTrailingWS()
+autocmd BufWrite *.F,*.F90,*.f90,*.f03 :silent call DeleteTrailingWS()
 
 """ vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -140,53 +141,57 @@ function! FortComment90() range
     endfor
 endfunction
 
-function! Get_Git_Dir()
-    let git_dir = system("git rev-parse --show-toplevel")
-    let no_git_dir = matchstr(git_dir, "^fatal:.*")
-    if empty(no_git_dir)
-        return git_dir
-    else
-        return false
-    endif
-endfunction
-
-function! IsHotB()
-    cd %:p:h
-    let git_dir = system("git rev-parse --show-toplevel")
-    " let no_git_dir = matchstr(git_dir, "^fatal:.*")
-    if git_dir =~ "hotb"
-        let g:ishotb=1
-    else
-        let g:ishotb=0
-    endif
-endfunction
-
-function! BuildClean()
+function! Clean()
     let current_dir = getcwd()
-    cd ~/prometheus/
-    execute "AsyncRun make clean && make -j9 WITH_OPENMP=1"
+    if current_dir =~ "prometheus"
+        echo "clean PROM /build"
+        cd ~/prometheus/
+    elseif current_dir =~ "hotb"
+        echo "clean HOTB /build"
+        cd ~/hotb/
+    else
+        echo "Wrong Folder"
+        echo current_dir
+    endif
+    execute "AsyncRun make clean"
     execute "copen"
     execute 'cd' fnameescape(current_dir)
     execute "wincmd k"
 endfunction
 
-function! Build()
+function! BuildRun()
     let current_dir = getcwd()
-    cd ~/prometheus/
-    execute "AsyncRun make -j9"
+    if current_dir =~ "prometheus"
+        echo "BUILD PROM FOR RUNNING"
+        cd ~/prometheus/
+    elseif current_dir =~ "hotb"
+        echo "BUILD HOTB FOR RUNNING"
+        cd ~/hotb/
+    else
+        echo "Wrong Folder"
+        echo current_dir
+    endif
+    execute "AsyncRun make -j9 WITH_OPT=1 WITH_OPENMP=1"
     execute "copen"
     execute 'cd' fnameescape(current_dir)
     execute "wincmd k"
 endfunction
 
-function! HotbN()
+function! BuildTest()
     let current_dir = getcwd()
-    cd ~/prometheus/
-    echo "scp make.inc.hotb.n make.inc.hotb"
-    execute "scp make.inc.hotb.n make.inc.hotb"
+    if current_dir =~ "prometheus"
+        echo "BUILDING PROM FOR TESTING"
+        cd ~/prometheus/
+    elseif current_dir =~ "hotb"
+        echo "BUILDING HOTB FOR TESTING"
+        cd ~/hotb/
+    else
+        echo "Wrong Folder"
+        echo current_dir
+    endif
+    execute "AsyncRun make -j9 DEBUG=HIGH"
     execute "copen"
-    call BuildHotb()
     execute 'cd' fnameescape(current_dir)
+    execute "wincmd k"
 endfunction
-
 

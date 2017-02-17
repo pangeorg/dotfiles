@@ -58,15 +58,16 @@ syntax enable " Enable syntax highlighting
 " hi Search cterm=NONE ctermfg=white ctermbg=3
 set background=dark
 colorscheme sierra
-hi Search cterm=NONE ctermfg=black ctermbg=7
+" hi Search cterm=NONE ctermfg=black ctermbg=7
+hi Search cterm=NONE ctermfg=black ctermbg=3
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
+" set nobackup
+" set nowb
+" set noswapfile
 set rtp+=~/.fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -88,7 +89,7 @@ set wrap         " Wrap lines
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 set shellslash
 set scrolloff=8
@@ -112,7 +113,7 @@ set iskeyword+=-
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undodir=~/.tmp/undodir
     set undofile
 catch
 endtry

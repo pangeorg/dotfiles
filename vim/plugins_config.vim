@@ -28,11 +28,11 @@ nnoremap <F5> <ESC>:Tagbar<CR>
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ],['tagbar']],
+      \   'left': [ [ 'mode', 'paste'],
+      \             [ 'fugitive', 'readonly', 'filename','modified' ],['tagbar']],
       \ 'right': [ [ 'lineinfo' ],
       \            [ 'percent' ],
-      \ [ 'filetype'],['bufnum' ] ]
+      \ [ 'filetype'],['asyncstatus'] ]
       \ },
       \ 'inactive': {
       \   'right': [ [ 'fileformat', 'fileencoding' ]]
@@ -41,6 +41,7 @@ let g:lightline = {
       \   'tagbar': '%{tagbar#currenttag("[%s]", "")}',
       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}',
+      \   'asyncstatus': '%{asyncrun#status()}',
       \   'fileformat': '',
       \   'fileencoding': '',
       \ },
@@ -50,33 +51,26 @@ let g:lightline = {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
       \   'bufnum': '%n'
       \ },
-      \ 'component_function': {
-      \   'asyncstatus': 'Asyncstatus',
-      \ },
       \ 'separator': { 'left': '>>', 'right': '<' },
       \ 'subseparator': { 'left': '>>', 'right': '<' }
       \ }
 function! Asyncstatus()
-    return '%{g:asyncrun_status}'
+    let l=asyncrun#status()
+    if l
+        " return '%{g:asyncrun_status}'
+        return '%{asyncrun#status()}'
+    else
+        return 'lala'
 endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-multiple-cursors
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:multi_cursor_start_key='<C-m>'
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => surround.vim config
 " Annotate strings with gettext http://amix.dk/blog/post/19678
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap Si S(i_<esc>f)
-au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
-
-"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ TEX

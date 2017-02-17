@@ -44,7 +44,7 @@ c = get_config()
 # c.InteractiveShellApp.pylab_import_all = True
 
 # A list of dotted module names of IPython extensions to load.
-# c.InteractiveShellApp.extensions = []
+c.InteractiveShellApp.extensions = ['h5py.ipy_completer']
 
 # Run the module as a script.
 # c.InteractiveShellApp.module_to_run = ''
@@ -131,7 +131,6 @@ c.TerminalIPythonApp.exec_lines = _exec_lines
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
-# c.TerminalIPythonApp.ipython_dir = u'/afs/mpa/home/georgsto/.config/ipython'
 
 # Whether to display a banner upon starting IPython.
 c.TerminalIPythonApp.display_banner = False
@@ -367,11 +366,13 @@ def decide_history():
     import subprocess
     out = subprocess.check_output(['echo','$HOSTNAME'])
     if 'lnx' in str(out):
-        return u'/afs/mpa/home/georgsto/.ipython/profile_default/ipython_hist_lnx.sqlite'
+        return u'/u/georgsto/.ipython/profile_default/ipython_hist_lnx.sqlite'
     elif 'ncg' in str(out):
-        return u'/afs/mpa/home/georgsto/.ipython/profile_default/ipython_hist_lnx.sqlite'
+        return u'/u/georgsto/.ipython/profile_default/ipython_hist_ncg.sqlite'
+    elif 'hydra' in str(out):
+        return u'/u/georgsto/.ipython/profile_default/ipython_hist_hydra.sqlite'
     else:
-        return u'/afs/mpa/home/georgsto/.ipython/profile_default/ipython_hist_new.sqlite'
+        return u'/u/georgsto/.ipython/profile_default/ipython_hist_new.sqlite'
 c.HistoryManager.hist_file = decide_history()
 
 

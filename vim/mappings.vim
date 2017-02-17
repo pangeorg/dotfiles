@@ -23,7 +23,6 @@ map <silent> <leader><cr> :noh<cr>
 
 " managing buffers
 nnoremap <leader>bd :Bclose<cr>
-nnoremap <C-p> :CtrlPBuffer<cr>
 nnoremap <leader>ba :1,1000 bd!<cr>
 nnoremap <leader>be :edit <c-r>=expand("%:p:h")<cr>/
 nnoremap <leader>bh :edit ~/
@@ -37,6 +36,18 @@ map <C-j> <esc>:bp<CR>
 " nnoremap <C-s> <esc><C-W>j
 " nnoremap <C-c> <esc><C-W>l
 " nnoremap <C-x> <esc><C-W>h
+"
+""" Quote selection
+vmap q <Esc>`>a'<Esc>`<i'<Esc>
+vmap [ <Esc>`>a]<Esc>`<i[<Esc>
+vmap { <Esc>`>a}<Esc>`<i{<Esc>
+"
+""" Fast CNext Copen ..
+nnoremap <leader>cn :cn<cr>
+nnoremap <leader>cp :cp<cr>
+nnoremap <leader>co :copen<cr>
+nnoremap <leader>cc :cclose<cr>
+
 
 " Useful mappings for managing splits
 nnoremap <leader>vs :vsplit <c-r>=expand("%:p:h")<cr>/
@@ -44,10 +55,6 @@ nnoremap <leader>vs :vsplit <c-r>=expand("%:p:h")<cr>/
 " Remap VIM 0 to first non-blank character
 map 0 ^
 map 9 $h
-
-" open ~/data/TODO for TODOLIST
-map <leader>td :vsplit ~/Documents/Labbook/todo.md<cr>
-map <leader>sc :vsplit ~/Documents/Labbook/notes.md<cr>
 
 " set paste
 map <leader>pp :setlocal paste!<cr>
@@ -70,7 +77,7 @@ map q: :q
 " Copy everything in matching bracket and append
 noremap $y <esc>%v%y%p<esc>
 
-" Open
+" Open LEXPLORE
 nnoremap <F4> <ESC>:Lexplore<CR>
 
 " Find files faast
@@ -123,14 +130,9 @@ inoremap $e ""<esc>i
 inoremap $t <><esc>i
 
 """quicksave"""
-nnoremap <F1> <Esc>:w<cr><Esc>:mksession! ~/.vim_runtime/temp_dirs/sessions/quicksave.vim<cr>
+" nnoremap <F1> <Esc>:w<cr><Esc>:mksession! ~/.vim_runtime/temp_dirs/sessions/quicksave.vim<cr>
 """quickload"""
-nnoremap <F2> <Esc>:source ~/.vim_runtime/temp_dirs/sessions/quicksave.vim<cr>
-
-""" Quote selection
-vmap q <Esc>`>a'<Esc>`<i'<Esc>
-vmap [ <Esc>`>a]<Esc>`<i[<Esc>
-vmap { <Esc>`>a}<Esc>`<i{<Esc>
+" nnoremap <F2> <Esc>:source ~/.vim_runtime/temp_dirs/sessions/quicksave.vim<cr>
 
 inoremap <C-e> <ESC>$a
 inoremap <C-a> <ESC>0a
@@ -151,4 +153,3 @@ nnoremap <leader>hl <ESC>:set hls!<CR>
 vnoremap <leader>hl <ESC>:set hls!<CR>gv
 inoremap <leader>hl <ESC>:set hls!<CR>a
 
-nnoremap <F8> :GitGutterToggle<CR>

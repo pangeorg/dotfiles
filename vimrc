@@ -22,6 +22,7 @@ Plug 'tpope/vim-repeat'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'godlygeek/tabular'
+Plug 'terryma/vim-expand-region'
 call plug#end()
 
 source ~/.dotfiles/vim/plugins_config.vim

@@ -28,19 +28,35 @@ au BufAdd,BufRead,BufEnter,BufWinEnter *.md :nmap <buffer> <leader>tf :silent! e
 """"""""""""""""""""""""""""""
 " => FORTRAN
 """""""""""""""""""""""""""""""
-" au BufRead,BufEnter *.F :highlight ColorColumn ctermbg=255
-au BufRead,BufEnter *.F.inc,*f03 :set filetype=fortran
-au BufRead,BufEnter *.F,*.F90,*.f03,*.f90 :highlight ColorColumn ctermbg=239
-au BufAdd,BufRead,BufEnter *.F,*.F90,*f03,*.f90 :execute 'setlocal colorcolumn='.join(range(1,6),',')
-au BufLeave,BufDelete *.F,*.F90,*f03,*.f90 :setlocal colorcolumn=0
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F,*.F90,*inc.hotb,*f03,*.f90 :nmap <buffer> <F9> :call BuildClean()<CR>
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F,*.F90,*inc.hotb,*f03,*.f90 :nmap <buffer> <F10> :call Build()<CR>
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F :vmap <buffer> gc :call FortComment()<CR>
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F90,*.f90 :vmap <buffer> gc :call FortComment90()<CR>
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F,*F90,*f03,*f90 :setlocal shiftwidth=2 tabstop=2
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F :execute 'let b:fortran_free_source=0'
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F :execute 'let b:fortran_fixed_source=1'
-au BufAdd,BufRead,BufEnter,BufWinEnter *.F :execute 'let b:fortran_more_precise=1'
-au BufAdd,BufRead,BufEnter,BufWinEnter *.f90,*.F90,*f03 :execute 'let b:fortran_free_source=1'
-au BufAdd,BufRead,BufEnter,BufWinEnter *.f90,*.F90,*f03 :execute 'let b:fortran_fixed_source=0'
-au BufAdd,BufRead,BufEnter,BufWinEnter *.f90,*.F90,*f03 :execute 'let b:fortran_more_precise=1'
+au BufRead,BufEnter,BufWinEnter,BufRead *.F.inc,*f03 :set filetype=fortran
+au BufRead,BufEnter,BufWinEnter,BufRead *.F,*.F90,*.f03,*.f90 :call SetUpFortran()
+au BufRead,BufEnter,BufWinEnter,BufRead *.F90,*.f90 :call SetUpFortran90()
+au BufRead,BufEnter,BufWinEnter,BufRead *make.inc* :call SetUpMake()
+au BufLeave,BufDelete *.F :setlocal colorcolumn=0
+
+function! SetUpMake()
+    execute "nmap <buffer> <F9> :call BuildRun()<CR>"
+    execute "nmap <buffer> <F10> :call BuildTest()<CR>"
+    execute "nmap <buffer> <F8> :call Clean()<CR>"
+endfunction
+
+
+function! SetUpFortran()
+    execute "setlocal colorcolumn=".join(range(1,6),",")
+    execute "highlight ColorColumn ctermbg=239"
+    execute "setlocal shiftwidth=2 tabstop=2 bs=2"
+    execute "let b:fortran_free_source=0"
+    execute "let b:fortran_fixed_source=1"
+    execute "let b:fortran_more_precise=1"
+    execute ":vmap <buffer> gc :call FortComment()<CR>"
+    execute "nmap <buffer> <F9> :call BuildRun()<CR>"
+    execute "nmap <buffer> <F10> :call BuildTest()<CR>"
+    execute "nmap <buffer> <F8> :call Clean()<CR>"
+    execute "hi Todo ctermfg=255"
+endfunction
+function! SetUpFortran90()
+    execute "setlocal colorcolumn=0"
+    execute "let b:fortran_free_source=1"
+    execute "let b:fortran_fixed_source=0"
+    execute ":vmap <buffer> gc :call FortComment90()<CR>"
+endfunction
