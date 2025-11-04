@@ -1,0 +1,14 @@
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential]
+	azreposCredentialType = oauth
+	helper = 
+	helper = /home/georg/.dotnet/tools/git-credential-manager
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[credential "azrepos:org/a2mac1"]
+	azureAuthority = https://login.microsoftonline.com/39894be5-b6e9-4b6c-ba86-79bc12ddadaa
+	username = gstockinger@a2mac1.com
+[user]
+	name = Georg Stockinger
+[diff]
+	tool = nvim -d

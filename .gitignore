@@ -1,0 +1,11 @@
+# Ignore stow conflicts
+.stow-local-ignore
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+EOF
